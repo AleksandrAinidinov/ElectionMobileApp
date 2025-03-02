@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Camera Preview -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/darker_gray"/>
+
+    <!-- Driver's License Number Input -->
+    <EditText
+        android:id="@+id/license_number_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Driver's License Number"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textSize="16sp"/>
+
+    <!-- Capture License Image Button -->
+    <Button
+        android:id="@+id/capture_license_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Capture License"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- License Image Preview -->
+    <ImageView
+        android:id="@+id/license_image_preview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray"/>
+
+    <!-- Capture Face Image Button -->
+    <Button
+        android:id="@+id/capture_face_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Capture Face"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Face Image Preview -->
+    <ImageView
+        android:id="@+id/face_image_preview"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray"/>
+
+    <!-- Extracted Result Display -->
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="Extracted Data Will Appear Here"/>
+
+</LinearLayout>
