@@ -407,13 +407,47 @@ val CustomTypography = Typography(
 
 @Composable
 fun VotingScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+    var selectedOption by remember { mutableStateOf<Int?>(null) }
+    var showMessage by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Text("Settings Screen")
+        Text("Select your Candidate:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CheckboxWithText("Doug Ford", selectedOption == 1) { selectedOption = if (it) 1 else null }
+        CheckboxWithText("Marit Stiles", selectedOption == 2) { selectedOption = if (it) 2 else null }
+        CheckboxWithText("Bonnie Crombie", selectedOption == 3) { selectedOption = if (it) 3 else null }
+        CheckboxWithText("Mike Schreiner", selectedOption == 4) { selectedOption = if (it) 4 else null }
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Button(
+            onClick = { showMessage = true },
+            enabled = selectedOption!= null,
+        ) {
+            Text("Submit")
+        }
+
+        if (showMessage) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Thank you for your vote!", color = Color.Green, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        }
     }
 }
+
+@Composable
+fun CheckboxWithText(text: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Checkbox(checked = checked, onCheckedChange = { isChecked ->
+            onCheckedChange(isChecked)
+        })
+        Text(text, modifier = Modifier.padding(start = 8.dp))
+    }
+}
+
 
 
 
