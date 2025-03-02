@@ -191,13 +191,49 @@ fun HottestUpdatesTab() {
 // Politic News
 @Composable
 fun NewsTab() {
-    // Empty for now
-    Text(
-        text = "No news available",
-        modifier = Modifier.padding(16.dp)
+    val newsItems = listOf(
+        News(
+            imageResId = R.drawable.news_image1,
+            author = "Nadine Yousif",
+            source = "BBC News, Toronto",
+            date = "Feb 28, 2025",
+            content = "'Trump thinks he can break us' - Ontario's Doug Ford makes bullish victory speech"
+        ),
+        News(
+            imageResId = R.drawable.news_image2,
+            date = "Feb 26, 2025",
+            author = "Nadine Yousif",
+            source = "BBC News, Toronto",
+            content = "Five takeaways from Canada's Liberal leadership debates"
+        ),
+        News(
+            imageResId = R.drawable.news_image3,
+            date = "Feb 25, 2025",
+            author = "Jessica Murphy & Nadine Yousif",
+            source = "BBC News, Toronto",
+            content = "Who might replace Trudeau as Liberal Party leader?"
+        ),
+        News(
+            imageResId = R.drawable.news_image4,
+            date = "Jan 28, 2025",
+            author = "Nadine Yousif",
+            source = "BBC News, Toronto",
+            content = "Ontario's 'Captain Canada' calls snap election as Trump tariff threat looms"
+        )
     )
-}
 
+    Column(modifier = Modifier.fillMaxSize()) {
+        newsItems.forEach { news ->
+            NewsItem(
+                imageResId = news.imageResId,
+                date = news.date,
+                author = news.author,
+                source = news.source,
+                content = news.content
+            )
+        }
+    }
+}
 
 
 
@@ -419,6 +455,57 @@ fun PostItem(avatarResId: Int, name: String, date: String, content: String) {
         Text(
             text = content,
             modifier = Modifier.padding(top = 8.dp)
+        )
+    }
+}
+
+@Composable
+fun NewsItem(imageResId: Int, date: String, author: String, source: String, content: String) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        // News Image
+        Image(
+            painter = painterResource(id = imageResId),
+            contentDescription = "News Image",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .clip(MaterialTheme.shapes.medium),
+            contentScale = ContentScale.Crop
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Date
+        Text(
+            text = date,
+            style = MaterialTheme.typography.headlineMedium,
+            color = Color.Gray,
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+
+        // Author
+        Row (modifier = Modifier.padding(2.dp)) {
+            // Author
+            Text(
+                text = author,
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.Gray,
+            )
+            Spacer(modifier = Modifier.width(15.dp))
+
+            // Source
+            Text(
+                text = source,
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.Gray,
+            )
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+
+        // Content
+        Text(
+            text = content,
+            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Justify
         )
     }
 }
